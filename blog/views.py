@@ -48,3 +48,8 @@ def update_post(request,id):
 
 
     return render(request,'blog/update_post.html',{'form':form})
+
+def delete_post(request,id):
+    post=Post.objects.get(id=id)
+    post.delete()
+    return redirect('/blog/')
