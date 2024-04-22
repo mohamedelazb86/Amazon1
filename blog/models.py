@@ -27,7 +27,7 @@ class Post(models.Model):
 class Category(models.Model):
     name=models.CharField(max_length=120)
 
-    def __str_(self):
+    def __str__(self):
         return self.name
 class Review(models.Model):
     user=models.CharField(max_length=120)
