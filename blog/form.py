@@ -1,5 +1,5 @@
 from django import forms
-from .views import Post
+from .models import Post,Review
 
 
 class Postform(forms.ModelForm):
@@ -7,3 +7,8 @@ class Postform(forms.ModelForm):
         model=Post
         #fields='__all__'
         exclude=('user',)
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model=Review
+        fields='__all__'
+        fields=['user','content','rate']

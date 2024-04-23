@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
-from .models import Post
-from .form import Postform
+from .models import Post,Review
+from .form import Postform,ReviewForm
 
 def post_list(request):
     data=Post.objects.all()
+
     context={
         'posts':data
     }
@@ -12,10 +13,29 @@ def post_list(request):
 
 def post_detail(request,slug):
     post=Post.objects.get(slug=slug)
+    reviews=Review.objects.filter(post=post)
 
+
+    if request.method == 'POST':
+        form=ReviewForm(request.POST)
+        if form.is_valid():
+            myform=form.save(commit=False)
+            myform.post=post
+            form.save()
+    else:
+        form=ReviewForm()
+    
+    
+
+
+        
     context={
-        'post':post
+        'post':post,
+        'reviews':reviews,
+        'form':form,
+
     }
+    
     return render(request,'blog/post_detail.html',context)
 
 

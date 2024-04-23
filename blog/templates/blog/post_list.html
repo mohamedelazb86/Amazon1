@@ -8,10 +8,10 @@
   </head>
   <body>
     <h1>All Posts </h1>
-    {% for post in post_list %}
+    {% for post in posts %}
     <ul>
         <li>
-            <a href="/blog/{{post.id}}">{{post}}</a>
+            <a href="/blog/{{post.slug}}">{{post}}</a>
         </li>
     </ul>
         
