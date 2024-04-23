@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import post_detail,post_list,create_post,update_post,delete_post
 from .views2 import Post_list,Post_detail,Post_Delete,Post_Create,Post_update
+from .api import PostDetailApi,PostListApi
 
 urlpatterns = [
     path('create',create_post),
@@ -16,5 +17,10 @@ urlpatterns = [
     # path('<int:pk>/create',Post_Create.as_view()),
     # path('<int:pk>/update',Post_update.as_view()),
     # path('<int:pk>/delete',Post_Delete.as_view()),
+
+    # api
+
+    path('api/list',PostListApi.as_view()),
+    path('api/list/<int:pk>',PostDetailApi.as_view()),
 
 ]

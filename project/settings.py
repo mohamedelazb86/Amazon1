@@ -42,10 +42,23 @@ INSTALLED_APPS = [
     "taggit",
     'django_summernote', 
     "django_bootstrap5",
+    'rest_framework',
+    'drf_yasg',
 
     # my apps
     'blog',
 ]
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
