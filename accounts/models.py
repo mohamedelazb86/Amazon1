@@ -6,17 +6,18 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user=models.OneToOneField(User,related_name='profile_user',on_delete=models.CASCADE)
-    image=models.ImageField(upload_to='photo_profile')
-    code=models.CharField(max_length=25,default=generate_code)
+    image=models.ImageField(upload_to='profile_photo')
+    code=models.CharField(max_length=120,default=generate_code)
+
 
     def __str__(self):
         return str(self.user)
 
-# create signals
-@receiver(post_save,sender=User)   
+@receiver(post_save,sender=User)    
 def create_profile(sender,instance,created,**kwargs):
     if created:
         Profile.objects.create(
             user=instance
         )
+    
 
