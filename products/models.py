@@ -22,7 +22,7 @@ class Product(models.Model):
     slug=models.SlugField(null=True,blank=True)
     quantity=models.IntegerField()
 
-    def _str__(self):
+    def __str__(self):
         return self.name
     
     def save(self,*args,**kwargs):
