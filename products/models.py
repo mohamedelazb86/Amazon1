@@ -33,6 +33,19 @@ class Product(models.Model):
     def review_count(self):
         reviews=self.review_product.all().count()
         return reviews
+    
+    @property
+    def avg_rate(self):
+        avg=0
+        reviews=self.review_product.all()
+        if len(reviews) > 0:
+            for review in reviews:
+                avg +=review.rate
+        else:
+            avg=0
+
+        return avg
+        
 
 class Brand(models.Model):
     name=models.CharField(max_length=120)
