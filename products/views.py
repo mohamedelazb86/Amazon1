@@ -24,8 +24,43 @@ class Product_Detail(DetailView):
 
 class Brand_List(ListView):
     model=Brand
-
-class Brand_detail(DetailView):
-    model=Brand
+    paginate_by=24
 
     
+
+    
+    
+
+  
+    
+
+# class Brand_detail(DetailView):
+#     model=Brand
+
+#     # def get_context_data(self, **kwargs) :
+#     #     context = super().get_context_data(**kwargs)
+#     #     context["related"] = Product.objects.filter(brand=self.get_object()) 
+#     #     return context
+    
+
+    
+class Brand_detail(ListView):
+    model=Product
+    template_name='products/brand_detail.html'
+    
+    def get_queryset(self):
+       
+       queryset=super().get_queryset().filter(brand__slug=self.kwargs['slug'])
+       return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["brands"] = Brand.objects.get(slug=self.kwargs['slug'])
+        return context
+    
+   
+ 
+    
+
+    
+
